@@ -11,11 +11,13 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Update database configuration from $DATABASE_URL.
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 # DATABASES['default'].update(db_from_env)
+import psycopg2
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,7 +33,8 @@ SECRET_KEY = 'django-insecure-t5&%p%a!&1(+2e#mp1o9i370gs-8p34_)*t84otc^b1%u=$(5m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*','oabnewsapp.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://oabnewsapp.up.railway.app','https://www.oabnewsapp.up.railway.app']
 
 
 # Application definition
@@ -43,6 +46,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+
+    # 'blog.apps.BlogConfig',
+    # 'taggit',
+    # 'django.contrib.sites',
+    # 'django.contrib.sitemaps',
+    # 'django.contrib.postgres',
 ]
 
 MIDDLEWARE = [
@@ -124,7 +134,8 @@ USE_TZ = True
 
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = 'static/'
 
@@ -137,3 +148,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email server configuration
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'merrymerry1320@gmail.com'
+EMAIL_HOST_PASSWORD = 'nowpsegxgkugbnbx'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
