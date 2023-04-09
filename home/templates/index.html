@@ -20,7 +20,7 @@
 <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
 
 
-    <style>
+    <style>      
 
     
 
@@ -128,9 +128,28 @@
     <link href="{% static 'cover.css' %}" rel="stylesheet">
   </head>
   <body class="d-flex h-100 text-center ">
-    <video autoplay loop muted poster="path/to/poster.jpg" id="bgvid">
+
+    <video loop muted autoplay poster="path/to/poster.jpg" id="bgvid">
       <source src="{% static 'assets/dist/video/ABC.mp4' %}" type="video/mp4">
-  </video>
+    </video>
+
+{% comment %}     
+    <video loop muted autoplay poster="path/to/poster.jpg" id="bgvid">
+      <source src="{% static 'assets/dist/video/ABC.mp4' %}" type="video/mp4">
+  </video> {% endcomment %}
+
+  <script>
+    window.addEventListener('load', function() {
+      var video = document.getElementById('bgvid');
+      var body = document.querySelector('body');
+      var loadingIndicator = document.getElementById('loading-indicator');
+    
+      video.addEventListener('loadeddata', function() {
+        body.classList.add('video-loaded');
+      });
+    });
+    
+  </script>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="check2" viewBox="0 0 16 16">
       <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
@@ -176,7 +195,7 @@
     <p class="fs-5">We specialize in creating tailored software applications that solve your specific business challenges. From streamlining workflows to automating repetitive tasks, our software solutions are designed to help you achieve your goals and improve overall efficiency.
     </p>
     <p class="lead">
-      <a href="#" class="btn btn-lg fw-bold " style="background: #ff7200;">Contact</a>
+      <a href="https://api.whatsapp.com/send?phone=2349045299301" class="btn btn-lg fw-bold " style="background: #ff7200;">Contact</a>
     </p>
   </main>
 
